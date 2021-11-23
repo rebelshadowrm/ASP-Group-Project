@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Asp Group Project</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+                <link href="https://unpkg.com/tabulator-tables@4.9.3/dist/css/tabulator_midnight.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script type ="module" src="~/js/site.js" defer ></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Asp_Group_Project</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                    <button id="toggleCart" class="cart-button"><i class="fas fa-shopping-cart" aria-hidden="true"></i> cart</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <template id="quantitiy-btn">
+                <div class="quantity-btn">
+                    <div class="add-to-cart">
+                        <button class="cart-add">Add to cart</button>
+                    </div>
+                    <div class="change-quantity">
+                        <button class="quantity-remove">-</button>
+                        <span class="quantity-number">0</span>
+                         <button class="quantity-add">+</button>
+                    </div>
+                </div>
+            </template>
+            <section id="cart-container">
+                <div class="cart-items">
+
+                </div>
+                <template id="cart-item">
+                    <div class="cart-item">
+                        <img src="" class="cart-item-image"/>
+                        <h2 class="cart-item-name"></h2>
+                        <p class="cart-item-price"></p>
+                        <div class="cart-item-quantity"></div>
+                    </div>
+                </template>
+                <div class="cart-numbers">
+                    <div class="subtotal-group">
+                    <h3>Subtotal</h3>
+                    <p class="cart-quantity">(1 item)</p>
+                    <p class="cart-subtotal">$0.00</p>
+                    </div>
+                    <div class="taxes-group">
+                        <h3>Taxes</h3>
+                        <p class="cart-taxes">Calculated at checkout</p>
+                    </div>
+                    <div class="total-group">
+                        <h3>Total</h3>
+                        <p class="cart-total">$00.00</p>
+                    </div>
+                </div>
+                @*<input type="button" class="checkout" value="Checkout"/>*@
+                <a asp-area="" asp-controller="Home" asp-action="Checkout">Checkout</a>
+            </section>
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - Asp_Group_Project - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/2261da91cd.js" crossorigin="anonymous"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
