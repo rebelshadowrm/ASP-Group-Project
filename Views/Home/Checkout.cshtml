@@ -11,18 +11,28 @@
         <div class="card">
             <div class="row paypal">
                 <div class="left">
-                    <input id="pp" type="radio" name="payment" />
+                    <input id="pp" type="radio" onclick="ppcdCheck()" name="payment" />
                     <div class="radio"></div>
                     <label for="pp">Paypal</label>
                 </div>
             </div>
-            <div class="row credit">
-                <div class="left">
-                    <input id="cd" type="radio" name="payment" />
+            <div>
+                <div id="ppChecked" style="visibility:hidden">
+                    <label for="ppEmail">Email:</label>
+                    <input id="ppEmail" type="text" />
+                    <label for="ppPassword">Password:</label>
+                    <input id="ppPassword" type="text" />
+                </div>
+            </div>
+            
+            <div class="row credit" >
+                <div class="left" >
+                    <input id="cd" type="radio" onclick="ppcdCheck()" name="payment" />
                     <div class="radio"></div>
                     <label for="cd">Debit/ Credit Card</label>
                 </div>
             </div>
+            <div id="cdChecked" style="visibility:visible">
             <div class="row cardholder">
                 <div class="info">
                     <label for="cardholdername">Name</label>
@@ -72,9 +82,23 @@
                     <input type="text" maxlength="4" placeholder="123"/>
                 </div>
             </div>
+            </div>
         </div>
     </div>
     <div class="button">
         <button type="submit">Confirm and Pay</button>
     </div>
 </div>
+<script>
+    function ppcdCheck() {
+    if (document.getElementById('pp').checked) {
+        document.getElementById('ppChecked').style.visibility = 'visible';
+        document.getElementById('cdChecked').style.visibility = 'hidden';
+    }
+    else if(document.getElementById('cd').checked){
+        document.getElementById('ppChecked').style.visibility = 'hidden';
+        document.getElementById('cdChecked').style.visibility = 'visible';
+    }
+
+}
+</script>
